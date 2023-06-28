@@ -1,0 +1,38 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="card col-10 m-auto">
+            <div class="card-body">
+                <button routerLink="/menu-queries" class="btn btn-light float-end">Go Back</button>
+                <h1 class="title text-center mt-2">Christmas Bonuses</h1>
+                <p class="fs-5 px-4 mt-3"> QUERY 3: Those employees with more than three years of seniority will receive
+                    a Christmas bonus at the end of the year. This bonus matches 10% of the highest profit
+                    of all the projects they had led that year.</p>
+                <div class="container mt-4">                   
+                    <table class="table table-striped table-hover table-bordered table-sm row-border hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="p-2">Employee ID</th>
+                                <th scope="col" class="p-2">Name</th>
+                                <th scope="col" class="p-2">Salary</th>
+                                <th scope="col" class="p-2">Max Benefit Obtained</th>
+                                <th scope="col" class="p-2">Christmas Bonus</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let result of listResults">
+                                <td scope="col" class="p-2 align-middle">{{result._id}}</td>
+                                <td scope="col" class="p-2 align-middle">{{result.name}}</td>
+                                <td scope="col" class="p-2 align-middle">{{result.salary | currency:'EUR':'symbol-narrow'}}</td>
+                                <td scope="col" class="p-2 align-middle">{{result.maxBenefit | currency:'EUR':'symbol-narrow'}}</td>
+                                <td scope="col" class="p-2 align-middle">{{result.incentive | currency:'EUR':'symbol-narrow'}}</td>
+                            </tr>                       
+                        </tbody>
+                    </table>
+                    <h5 *ngIf="listResults.length == 0"> This is empty :( </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

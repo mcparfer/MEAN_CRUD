@@ -1,0 +1,54 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="card col-10 m-auto">
+            <div class="card-body">
+                <button routerLink="/insert-project" class="btn btn-light float-start">New Project</button>
+                <button routerLink="/" class="btn btn-light float-end">Go Back</button>
+                <h1 class="title text-center mt-2">Project Register</h1>
+                <div class="container mt-4">
+                    <div class="d-flex flex-row mt-3 mb-2">
+                        <label><input checked (click)="toggleName()" type="checkbox"> Name</label>
+                        <label><input checked (click)="toggleOwner()" type="checkbox"> Owner</label>
+                        <label><input checked (click)="toggleStart()" type="checkbox"> Start Date</label>
+                        <label><input checked (click)="toggleEnd()" type="checkbox"> End Date</label>
+                        <label><input checked (click)="toggleBudget()" type="checkbox"> Budget</label>
+                        <label><input checked (click)="toggleExpected()" type="checkbox"> Expected Earnings</label>
+                        <label><input checked (click)="toggleFinal()" type="checkbox"> Final Earnings</label>
+                    </div>
+                    <table id="projecttable" *ngIf="listProject.length > 0" class="table table-striped table-hover table-bordered table-sm row-border hover mt-3">
+                        <thead>
+                            <tr>
+                                <th [appSort]="listProject" data-order="asc" data-name="_id" scope="col" class="p-2">ID</th>
+                                <th [appSort]="listProject" data-order="asc" data-name="name" scope="col" class="p-2 col-2" *ngIf="showName">Name</th>
+                                <th [appSort]="listProject" data-order="asc" data-name="ownerID" scope="col" class="p-2" *ngIf="showOwner">Owner</th>
+                                <th [appSort]="listProject" data-order="asc" data-name="duration.start" scope="col" class="p-2" *ngIf="showStart">Start Date</th>
+                                <th [appSort]="listProject" data-order="asc" data-name="endDate" scope="col" class="p-2" *ngIf="showEnd">End Date</th>
+                                <th [appSort]="listProject" data-order="asc" data-name="budget" scope="col" class="p-2" *ngIf="showBudget">Budget</th>
+                                <th [appSort]="listProject" data-order="asc" data-name="expectedEarnings" scope="col" class="p-2" *ngIf="showExpected">Expected Earnings</th>
+                                <th [appSort]="listProject" data-order="asc" data-name="finalEarnings" scope="col" class="p-2" *ngIf="showFinal">Final Earnings</th>
+                                <th scope="col" class="p-2 col-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let project of listProject">
+                                <td scope="col" class="p-2 align-middle">{{project._id}}</td>
+                                <td scope="col" class="p-2 align-middle" *ngIf="showName">{{project.name}}</td>
+                                <td scope="col" class="p-2 align-middle" *ngIf="showOwner">{{project.ownerID}}</td>
+                                <td scope="col" class="p-2 align-middle" *ngIf="showStart">{{project.duration.start | date: 'dd/MM/yyyy'}}</td>
+                                <td scope="col" class="p-2 align-middle" *ngIf="showEnd">{{project.duration.end | date: 'dd/MM/yyyy'}}</td>
+                                <td scope="col" class="p-2 align-middle" *ngIf="showBudget">{{project.budget | currency:'EUR':'symbol-narrow'}}</td>
+                                <td scope="col" class="p-2 align-middle" *ngIf="showExpected">{{project.earnings.expected | currency:'EUR':'symbol-narrow'}}</td>
+                                <td scope="col" class="p-2 align-middle" *ngIf="showFinal">{{project.earnings.obtained | currency:'EUR':'symbol-narrow'}}</td>
+                                <td class="p-2">
+                                    <i class="fas fa-edit text-primary px-2" [routerLink]="['/edit-project', project._id]"></i>
+                                    <i class="fas fa-trash text-danger px-1" (click)="deleteProject(project._id)"></i>
+                                </td>
+                            </tr>                       
+                        </tbody>
+                    </table>
+                    <h5 *ngIf="listProject.length == 0"> This is empty :( </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

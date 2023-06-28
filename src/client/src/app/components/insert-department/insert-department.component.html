@@ -1,0 +1,106 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="card col-6 m-auto">
+      <div class="card-body">
+        <h2 class="title float-start mb-4">{{ title }}</h2>
+        <button routerLink="/list-departments" class="btn btn-light float-end mt-1 mb-4">Go Back</button>
+        <form class="clear mt-5" [formGroup]="dptForm" (ngSubmit)="addDepartment()">
+          <div class="row">
+            <div class="col-xl-4 col-12">
+              <div class="row">
+                <label class="label mb-1">Identification (ID):</label>
+                <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-id"><i class="fa-solid fa-hashtag"></i></span>
+                  </div>
+                  <input required type="number" class="form-control w-100" min="100" max="999" formControlName="id"
+                    aria-describedby="addon-id">
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-danger" *ngIf="dptForm.get('id')?.hasError('required') && dptForm.get('id')?.touched">
+                  <span>This field is <strong>required</strong>.</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-8 col-12">
+              <div class="row">
+                <label class="label mb-1">Deparment Name:</label>
+                <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-name"><i class="fa-solid fa-pencil"></i></span>
+                  </div>
+                  <input required type="text" class="w-100 form-control" formControlName="name"
+                    aria-describedby="addon-name" placeholder="Deparment Name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-danger"
+                  *ngIf="dptForm.get('name')?.hasError('required') && dptForm.get('name')?.touched">
+                  <span>This field is <strong>required</strong>.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row my-2">
+            <div class="col-12">
+              <div class="row">
+                <label class="label mb-1">Shifts:</label>
+                <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-shifts"><i class="fa-solid fa-clock"></i></span>
+                  </div>
+                  <input required type="text" class="w-100 form-control" formControlName="shifts"
+                    aria-describedby="addon-shifts" placeholder="09:00-15:00,14:00-19:00...">
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-danger"
+                  *ngIf="dptForm.get('shifts')?.hasError('required') && dptForm.get('shifts')?.touched">
+                  <span>This field is <strong>required</strong>.</span>
+                </div>
+              </div>
+            </div>
+            <hr class="style5 my-4">
+            <h5>Contact Info:</h5>
+            <div formArrayName="contactInfo">
+              <div class="form-group" *ngFor="let object of contactFormArr.controls; let i=index">
+                <div class="row" [formGroupName]="i">
+                  <div class="col-xl-6 col-12">
+                    <label class="label mb-1">Number:</label>
+                    <div class="input-group flex-nowrap">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="addon-number"><i class="fa-solid fa-scroll"></i></span>
+                      </div>
+                      <input type="text" class="w-100 form-control" formControlName="number"
+                        aria-describedby="addon-number" placeholder="Contact number">
+                    </div>
+                  </div>
+                  <div class="col-xl-5 col-12">
+                    <label class="label mb-1">Type:</label>
+                    <div class="input-group flex-nowrap">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="addon-type"><i
+                            class="fa-solid fa-building-columns"></i></span>
+                      </div>
+                      <input type="text" class="w-100 form-control" formControlName="type" aria-describedby="addon-type"
+                        placeholder="Landline, mobile, fax...">
+                    </div>
+                  </div>
+                  <div class="col-xl-1 col-12">
+                    <button class="btn btn btn-danger btn-sm w-100 mt-4 mb-2" (click)="deleteContact(i)">X</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 p-0">
+                <p class="add-one text-center font-weight-bold mt-2 mb-0" (click)="addNewContact()">+ Add Contact</p>
+              </div>
+              <button type="submit" id="submit" class="btn btn-danger mt-4 mb-2 col-12"
+                [disabled]="dptForm.invalid">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

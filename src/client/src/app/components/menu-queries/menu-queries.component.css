@@ -1,0 +1,36 @@
+.card {
+    border: 2px dashed #2ccac0
+}
+
+.clear {
+    clear: both
+}
+
+i {
+    margin-bottom: 30px;
+}
+
+button.menu { 
+    height:120px;
+    margin-bottom: 30px;
+ }
+
+ 
+button.menuback { 
+    height:50px;
+    margin-bottom: 30px;
+ }
+
+.btn-info {
+    border: 1px solid #2ccac0;
+    background-color: #d4f2e8;
+    color: black;
+    height: 38px;
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active {
+    background-color: #6ed5ce;
+    color: #fff;
+}

@@ -1,0 +1,45 @@
+.card {
+  border: 2px dashed #2ccac0;
+}
+
+.clear {
+  clear: both
+}
+
+.style5 {
+  background-color: #fff;
+  border-top: 2px dashed #8c8b8b;
+}
+
+input {
+  border: 1px solid #d6dbe0;
+  height: 38px;
+  padding-left: 10px;
+}
+
+span {
+  height: 38px;
+}
+
+.form-check-input {
+  height: 20px;
+  width: 20px;
+}
+
+.btn-light {
+  border: 1px solid #d6dbe0;
+  height: 38px;
+}
+
+.btn-danger {
+  background-color: #e22d7a;
+  color: #fff;
+  height: 38px;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active {
+  background-color: #c5115f;
+  color: #fff;
+}

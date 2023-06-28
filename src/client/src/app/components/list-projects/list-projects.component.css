@@ -1,0 +1,16 @@
+.card {
+    border: 2px dashed #2ccac0;
+}
+
+label {
+    margin-right: 25px;
+}
+
+.btn-light {
+    border: 2px solid #d6dbe0;
+    height: 38px;
+}
+
+.fas {
+    cursor: pointer;
+}

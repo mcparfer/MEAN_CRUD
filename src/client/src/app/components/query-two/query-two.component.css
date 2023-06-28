@@ -1,0 +1,8 @@
+.card {
+    border: 2px dashed #2ccac0;
+}
+
+.btn-light {
+    border: 2px solid #d6dbe0;
+    height: 38px;
+}

@@ -1,0 +1,57 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="card col-10 m-auto">
+            <div class="card-body">
+                <button routerLink="/insert-department" class="btn btn-light float-start">New Department</button>
+                <button routerLink="/" class="btn btn-light float-end">Go Back</button>
+                <h1 class="title text-center mt-2">Departments Register</h1>
+                <div class="container mt-4">
+                    <div class="d-flex flex-row mt-3 mb-2">
+                        <label><input checked (click)="toggleName()" type="checkbox"> Department Name</label>
+                        <label><input checked (click)="toggleContact()" type="checkbox"> Contact Info</label>
+                        <label><input checked (click)="toggleShifts()" type="checkbox"> Work Time</label>
+                        <label><input checked (click)="toggleEmployees()" type="checkbox"> Employees</label>
+                    </div>
+                    <table id="dpttable" *ngIf="listDpt.length > 0"
+                        class="table table-striped table-hover table-bordered table-sm row-border hover mt-3">
+                        <thead>
+                            <tr>
+                                <th [appSort]="listDpt" data-order="asc" data-name="_id" scope="col" class="p-2">ID</th>
+                                <th [appSort]="listDpt" data-order="asc" data-name="name" scope="col" class="p-2" *ngIf="showName">Department Name</th>
+                                <th scope="col" class="p-2" *ngIf="showContact">Contact Info</th>
+                                <th scope="col" class="p-2" *ngIf="showShifts">Work Time</th>
+                                <th scope="col" class="p-2" *ngIf="showEmployees">Employees</th>
+                                
+                                <th scope="col" class="p-2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let department of listDpt">
+                                <td scope="col" class="p-2 align-middle">{{department._id}}</td>
+                                <td scope="col" *ngIf="showName" class="p-2 align-middle">{{department.name}}</td>
+                                <td scope="col" class="p-2 align-middle" *ngIf="showContact">
+                                    <p class="m-0 p-2" *ngFor="let contact of department.contactInfo">Number: {{contact.number}} | Type: {{contact.type}}</p>
+                                </td>
+                                <td scope="col" class="p-2 align-middle" *ngIf="showShifts">
+                                    <tr *ngFor="let shift of department.shifts">
+                                        <td scope="col" class="p-2">{{shift}}</td>
+                                    <tr>
+                                </td>
+                                <td scope="col" *ngIf="showEmployees" class="align-middle" >
+                                    <tr *ngFor="let employee of department.employees">
+                                        <td scope="col" class="p-2">{{employee.firstName}} {{employee.lastName}}</td>
+                                    <tr>
+                                </td>
+                                <td class="p-2 align-middle">
+                                    <i class="fas fa-edit text-primary px-2" [routerLink]="['/edit-department', department._id]"></i>
+                                    <i class="fas fa-trash text-danger px-1" (click)="deleteDepartment(department._id)"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5 *ngIf="listDpt.length == 0"> This is empty :( </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

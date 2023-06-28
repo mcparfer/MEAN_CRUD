@@ -1,0 +1,152 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="card col-xl-6 col-8 m-auto">
+            <div class="card-body">
+                <h2 class="title float-start mb-4">Project Registration Form</h2>
+                <button routerLink="/list-projects" class="btn btn-light float-end mt-1 mb-4">Go Back</button>
+                <form class="clear mt-5" [formGroup]="projectForm" (ngSubmit)="addProject()">
+                    <div class="row mb-2">
+                        <div class="col-xl-4 col-12">
+                            <div class="row">
+                                <label class="label mb-1">Project Code:</label>
+                                <div class="input-group flex-nowrap">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-code"><i
+                                                class="fa-solid fa-barcode"></i></span>
+                                    </div>
+                                    <input required type="text" class="form-control w-100" formControlName="id"
+                                        aria-describedby="addon-code" placeholder="Project Code">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-danger"
+                                    *ngIf="projectForm.get('id')?.hasError('required') && projectForm.get('id')?.touched">
+                                    <span>This field is <strong>required</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-12">
+                            <div class="row">
+                                <label class="label mb-1">Project Name:</label>
+                                <div class="input-group flex-nowrap">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-name"><i
+                                                class="fa-solid fa-pencil"></i></span>
+                                    </div>
+                                    <input required type="text" class="w-100 form-control" formControlName="name"
+                                        aria-describedby="addon-name" placeholder="Project Name">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-danger"
+                                    *ngIf="projectForm.get('name')?.hasError('required') && projectForm.get('name')?.touched">
+                                    <span>This field is <strong>required</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="style5 my-4">
+                    <div class="row mb-2">
+                        <div class="col-xl-8 col-12">
+                            <div class="row">
+                                <label class="label mb-1">Owner ID:</label>
+                                <div class="input-group flex-nowrap">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-owner"><i
+                                                class="fa-solid fa-user"></i></span>
+                                    </div>
+                                    <select required class="form-select" [(ngModel)]="option" formControlName="ownerID"
+                                        aria-describedby="addon-owner">
+                                        <option [ngValue]="null" selected disabled hidden>- Choose ID -
+                                        </option>
+                                        <option *ngFor="let option of listEmployees" [ngValue]="option._id">
+                                            {{ option._id }} - {{ option.firstName }} {{ option.lastName }} [{{ option.departmentID }}]
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-danger"
+                                    *ngIf="projectForm.get('ownerID')?.hasError('required') && projectForm.get('ownerID')?.touched">
+                                    <span>This field is <strong>required</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-12">
+                            <div class="row">
+                                <label class="label mb-1">Budget:</label>
+                                <div class="input-group flex-nowrap">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-name"><i
+                                                class="fa-solid fa-hand-holding-dollar"></i></span>
+                                    </div>
+                                    <input required type="number" class="w-100 form-control" formControlName="budget"
+                                        min="500" aria-describedby="addon-name">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-danger"
+                                    *ngIf="projectForm.get('budget')?.hasError('required') && projectForm.get('budget')?.touched">
+                                    <span>This field is <strong>required</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row mt-3 mb-4">
+                        <div class="col-xl-8 col-12">
+                            <div class="row">
+                                <label class="label mb-1">Start Date - End Date:</label>
+                                <div class="input-group flex-nowrap">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-date"><i
+                                                class="fa-solid fa-calendar"></i></span>
+                                    </div>
+                                    <div class="w-100" aria-describedby="addon-date">
+                                        <input required type="date" class="form-control w-50 d-inline"
+                                            formControlName="startDate">
+                                        <input required type="date" class="form-control w-50 d-inline"
+                                            formControlName="endDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-danger"
+                                    *ngIf="projectForm.get('startDate')?.hasError('required') && projectForm.get('startDate')?.touched || projectForm.get('endDate')?.hasError('required') && projectForm.get('endDate')?.touched">
+                                    <span>These fields are <strong>required</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-12">
+                            <div class="row">
+                                <label class="label mb-1">Expected Earnings:</label>
+                                <div class="input-group flex-nowrap">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-name"><i
+                                                class="fa-solid fa-money-bill-1-wave"></i></span>
+                                    </div>
+                                    <input required type="number" class="w-100 form-control"
+                                        formControlName="expectedEarnings" aria-describedby="addon-name" min="500">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-danger"
+                                    *ngIf="projectForm.get('expectedEarnings')?.hasError('required') && projectForm.get('expectedEarnings')?.touched">
+                                    <span>This field is <strong>required</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="showMoney">
+                        <hr class="style5">
+                        <div class="inline-block col-12 col-xl-10 offset-xl-2 mt-2">
+                            <input type="number" class="form-control w-50 float-end" formControlName="finalEarnings">
+                            <label class="label mt-2 me-3 float-end">FINAL EARNINGS (optional): </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger mt-4 mb-2 col-12"
+                        [disabled]="projectForm.invalid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

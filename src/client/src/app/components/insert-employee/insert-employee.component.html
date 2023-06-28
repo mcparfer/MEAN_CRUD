@@ -1,0 +1,139 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="card col-6 m-auto">
+      <div class="card-body">
+        <h2 class="title float-start mb-4"> {{ title }}</h2>
+        <button routerLink="/list-employees" class="btn btn-light float-end mt-1 mb-4">Go Back</button>
+        <form class="clear mt-5" [formGroup]="employeeForm" (ngSubmit)="addEmployee()">
+          <h5 class="mt-4">Personal Information</h5>
+          <div class="row">
+            <div class="col-xl-5 col-12">
+              <div class="row">
+                <label class="label mb-1">First Name:</label>
+                <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-first"><i class="fa-solid fa-user"></i></span>
+                  </div>
+                  <input required type="text" class="form-control w-100" placeholder="First Name"
+                    formControlName="firstName" aria-describedby="addon-first">
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-danger"
+                  *ngIf="employeeForm.get('firstName')?.hasError('required') && employeeForm.get('firstName')?.touched">
+                  <span>This field is <strong>required</strong>.</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-7 col-12">
+              <div class="row">
+                <label class="label mb-1">Last Name:</label>
+                <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-last"><i class="fa-solid fa-user"></i></span>
+                  </div>
+                  <input required type="text" class="w-100 form-control" placeholder="Last Name"
+                    formControlName="lastName" aria-describedby="addon-last">
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-danger"
+                  *ngIf="employeeForm.get('lastName')?.hasError('required') && employeeForm.get('lastName')?.touched">
+                  <span>This field is <strong>required</strong>.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <label class="label mb-1">Email:</label>
+            <div class="input-group flex-nowrap">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="addon-email"><i class="fa-solid fa-envelope"></i></span>
+              </div>
+              <input required type="email" class="w-100 form-control" placeholder="example@mybussiness.com"
+                formControlName="email" aria-describedby="addon-email">
+            </div>
+          </div>
+          <div class="row">
+            <div class="text-danger"
+              *ngIf="employeeForm.get('email')?.hasError('required') && employeeForm.get('email')?.touched">
+              <span>This field is <strong>required</strong>.</span>
+            </div>
+            <div class="text-danger"
+              *ngIf="employeeForm.get('email')?.hasError('email') && employeeForm.get('email')?.touched">
+              <span><strong>Invalid email.</strong></span>
+            </div>
+          </div>
+          <hr class="style5">
+          <h5>Work Information</h5>
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <label class="label mb-1">Deparment ID:</label>
+                <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span id="addon-job" class="input-group-text w-100"><i class="fa-solid fa-briefcase"></i></span>
+                  </div>
+                  <select required class="form-select" [(ngModel)]="option" formControlName="departmentID"
+                    aria-describedby="addon-job">
+                    <option [ngValue]="null" selected disabled hidden>- Choose Departament -</option>
+                    <option *ngFor="let option of listDpt" [ngValue]="option._id">
+                      {{ option._id }} - {{ option.name }}
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-danger"
+                  *ngIf="employeeForm.get('departmentID')?.hasError('required') && employeeForm.get('departmentID')?.touched">
+                  <span>This field is <strong>required</strong>.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-xl-4 col-12">
+              <div class="row">
+                <label class="label mb-1">Hire Date:</label>
+                <div class="input-group flex-nowrap mb-1">
+                  <div class="input-group-prepend">
+                    <span id="addon-date" class="input-group-text"><i class="fa-solid fa-calendar-day"></i></span>
+                  </div>
+                  <input required type="date" class="w-100 form-control" min="2000-01-01" formControlName="hireDate"
+                    aria-describedby="addon-date">
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-danger"
+                  *ngIf="employeeForm.get('hireDate')?.hasError('required') && employeeForm.get('hireDate')?.touched">
+                  <span>This field is <strong>required</strong>.</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-8 col-12">
+              <div class="row">
+                <label class="label mt-1">Extra Roles:</label>
+              </div>
+              <div class="row px-3">
+                <div class="form-check mt-2 col-4">
+                  <input id="supervisor" type="checkbox" class="form-check-input" value="false"
+                    formControlName="supervisor">
+                  <label class="label" for="supervisor">
+                    Supervisor
+                  </label>
+                </div>
+                <div class="form-check mt-2 col-7">
+                  <input id="manager" type="checkbox" class="form-check-input" value="false" formControlName="manager">
+                  <label class="label" for="manager">
+                    Departament Manager
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-danger mt-4 mb-2 col-12"
+            [disabled]="employeeForm.invalid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
