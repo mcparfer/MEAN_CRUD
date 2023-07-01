@@ -60,7 +60,7 @@ Make sure you have the following components installed before running the project
 1. Clone the project repository:
 
    ```bash
-   git clone https://github.com/your_username/enterprise-management.git
+   git clone https://github.com/mcparfer/MEAN_CRUD
    ```
 
 2. Navigate to the project directory and install dependencies for both the client and server:
